@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Kode_Mono } from "next/font/google";
 import "./globals.css";
 import { BlockchainDataProvider } from "./context/BlockainDataContext";
 import Header from "./components/Header";
 
-const inter = Inter({ subsets: ["latin"] });
+const kodeMono = Kode_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Blockexplorer",
@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={kodeMono.className}>
         <BlockchainDataProvider>
           <Header />
           {children}
