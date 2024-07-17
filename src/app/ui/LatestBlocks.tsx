@@ -10,7 +10,7 @@ import Link from "next/link";
 
 function BlockDetails({ block }: { block: BlockType }) {
   return (
-    <div className="flex flex-row  justify-between items-center w-full">
+    <div className="flex flex-row justify-between items-center w-full">
       <div>
         <Link href={`/block/${block.hash}`}>{block.number}</Link>
         <Timestamp unixTimestamp={block.timestamp} />
