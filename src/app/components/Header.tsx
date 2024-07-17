@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useBlockchainData } from "../hooks/useBlockchainData";
 
 export default function Header() {
@@ -7,7 +8,7 @@ export default function Header() {
 
   return (
     <header className="flex justify-between m-4 p-4 border-lime-600 border-2 rounded-lg">
-      <p>Block Explorer</p>
+      <Link href="/">Block Explorer</Link>
       <p>
         Current Gas Price:{" "}
         {blockChainData.gasPrice ? blockChainData.gasPrice.gasInGwei : "--"}{" "}
