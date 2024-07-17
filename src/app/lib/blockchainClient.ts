@@ -10,7 +10,7 @@ const settings = {
 
 const alchemyClient = new Alchemy(settings);
 
-type Blockhash = "string";
+type Blockhash = string;
 
 export function getBlock(
   blockHashOrBlockTag: Blockhash | "earliest" | "pending" | "latest"
@@ -20,6 +20,17 @@ export function getBlock(
 
 export function getLatestBlock() {
   return alchemyClient.core.getBlockNumber();
+}
+
+export async function getLatestBlocks(count = 10) {
+  const latestBlockNumber = await alchemyClient.core.getBlockNumber();
+  const blockPromises = [];
+
+  for (let i = 0; i < count; i++) {
+    blockPromises.push(alchemyClient.core.getBlock(latestBlockNumber - i));
+  }
+
+  return Promise.all(blockPromises);
 }
 
 export async function getCurrentGasPrice() {

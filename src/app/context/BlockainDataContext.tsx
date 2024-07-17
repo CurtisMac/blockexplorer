@@ -36,9 +36,10 @@ export const BlockchainDataProvider: React.FC<BlockchainDataProviderProps> = ({
 
   const fetchBlockChainData = useCallback(async () => {
     try {
-      const [gasResponse] = await Promise.all([fetch("/api/gas")]);
-      const [gasPrice] = await Promise.all([gasResponse.json()]);
-      dispatch({ type: "UPDATE", payload: { gasPrice } });
+      const response = await fetch("/api/data/latest");
+      const data = await response.json();
+
+      dispatch({ type: "UPDATE", payload: { ...data } });
     } catch (error) {
       console.error(error);
     }
@@ -46,7 +47,7 @@ export const BlockchainDataProvider: React.FC<BlockchainDataProviderProps> = ({
 
   useEffect(() => {
     fetchBlockChainData();
-    // TODO: move retetchDelay to config
+    // TODO: move refetchDelay to config
     const refetchDelay = 60 * 1000 * 5;
 
     const interval = setInterval(fetchBlockChainData, refetchDelay);

@@ -1,10 +1,4 @@
-export interface Block {
-  number: number;
-}
-
-export interface Transaction {
-  hash: string;
-}
+import { Block, TransactionResponse } from "alchemy-sdk";
 
 export interface GasPrice {
   gasInWei: number;
@@ -13,7 +7,7 @@ export interface GasPrice {
 
 export interface BlockchainDataState {
   latestBlocks: Block[];
-  latestTransactions: Transaction[];
+  latestTransactions: TransactionResponse[];
   gasPrice: null | GasPrice;
 }
 
@@ -21,7 +15,7 @@ export type BlockchainDataAction = {
   type: "UPDATE";
   payload: {
     blocks?: Block[];
-    transactions?: Transaction[];
+    transactions?: TransactionResponse[];
     gasPrice?: GasPrice;
   };
 };
