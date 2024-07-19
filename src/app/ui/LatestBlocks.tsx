@@ -2,7 +2,6 @@
 
 import { Block as BlockType } from "alchemy-sdk";
 import { useBlockchainData } from "../hooks/useBlockchainData";
-import clsx from "clsx";
 import { Square3Stack3DIcon } from "@heroicons/react/24/outline";
 import { Timestamp } from "../components/Timestamp";
 import { DetailsList } from "../components/DetailsList";
@@ -30,17 +29,19 @@ export default function LatestBlocks({ className }: { className?: string }) {
   const blockChainData = useBlockchainData();
 
   return (
-    <div className={clsx("m-4 border-lime-600 border-2 rounded-lg", className)}>
-      <p className="m-2 ml-4">Latest Blocks</p>
-      {blockChainData.latestBlocks.length
-        ? blockChainData.latestBlocks.map((block) => (
-            <DetailsList key={block.hash} icon={Square3Stack3DIcon}>
-              <BlockDetails block={block} />
-            </DetailsList>
-          ))
-        : new Array(10)
-            .fill({})
-            .map((_, i) => <DetailsList key={i} icon={Square3Stack3DIcon} />)}
+    <div className={className}>
+      <div className="border-lime-600 border-2 rounded-lg">
+        <p className="m-2 ml-4">Latest Blocks</p>
+        {blockChainData.latestBlocks.length
+          ? blockChainData.latestBlocks.map((block) => (
+              <DetailsList key={block.hash} icon={Square3Stack3DIcon}>
+                <BlockDetails block={block} />
+              </DetailsList>
+            ))
+          : new Array(10)
+              .fill({})
+              .map((_, i) => <DetailsList key={i} icon={Square3Stack3DIcon} />)}
+      </div>
     </div>
   );
 }

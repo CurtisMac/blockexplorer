@@ -33,6 +33,21 @@ export async function getLatestBlocks(count = 10) {
   return Promise.all(blockPromises);
 }
 
+export async function getLatestTransactions() {
+  const latestBlockNumber = await alchemyClient.core.getBlockNumber();
+
+  const block = await alchemyClient.core.getBlockWithTransactions(
+    latestBlockNumber
+  );
+
+  const transactions = block.transactions.map((transaction) => ({
+    ...transaction,
+    timestamp: block.timestamp,
+  }));
+
+  return transactions;
+}
+
 export async function getCurrentGasPrice() {
   const data = await alchemyClient.core.getGasPrice();
   const gasInWei = Utils.formatUnits(data, "wei");
