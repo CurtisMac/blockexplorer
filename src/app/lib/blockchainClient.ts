@@ -1,4 +1,4 @@
-import { Network, Alchemy, Utils } from "alchemy-sdk";
+import { Network, Alchemy, Utils, TransactionResponse } from "alchemy-sdk";
 
 const settings = {
   apiKey: process.env.ALCHEMY_API_KEY,
@@ -54,4 +54,10 @@ export async function getCurrentGasPrice() {
   const gasInGwei = Utils.formatUnits(data, "gwei");
 
   return { gasInWei, gasInGwei };
+}
+
+export function getTransaction(
+  txhash: string
+): Promise<TransactionResponse | null> {
+  return alchemyClient.core.getTransaction(txhash);
 }

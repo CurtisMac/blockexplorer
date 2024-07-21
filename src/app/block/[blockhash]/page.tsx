@@ -5,6 +5,7 @@ import { useBlockchainData } from "@/app/hooks/useBlockchainData";
 import { ThreeDots } from "react-loader-spinner";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import { Block as BlockType, Utils } from "alchemy-sdk";
+import Link from "next/link";
 
 export default function Page({ params }: { params: { blockhash: string } }) {
   const blockChainData = useBlockchainData();
@@ -32,8 +33,6 @@ export default function Page({ params }: { params: { blockhash: string } }) {
       if (!block) {
         setBlockNotFound(true);
       }
-
-      console.log(block);
 
       setBlock(block);
     })();
@@ -84,7 +83,8 @@ export default function Page({ params }: { params: { blockhash: string } }) {
           <ul className="mt-1 pl-4">
             {block.transactions.map((transaction, i) => (
               <li className="mt-1" key={i}>
-                - {transaction}
+                -{" "}
+                <Link href={`/transaction/${transaction}`}>{transaction}</Link>
               </li>
             ))}
           </ul>

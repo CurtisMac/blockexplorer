@@ -5,17 +5,19 @@ import { useBlockchainData } from "../hooks/useBlockchainData";
 import { DocumentIcon } from "@heroicons/react/24/outline";
 import { DetailsList } from "../components/DetailsList";
 import { Timestamp } from "../components/Timestamp";
+import Link from "next/link";
 
 function TransactionDetails({
   transaction,
 }: {
   transaction: TransactionResponse;
 }) {
-  console.log(transaction);
   return (
     <div className="flex flex-row justify-around w-full">
-      <div className="w-1/3 overflow-hidden pr-10">
-        <p className="truncate mr-2">{transaction.hash}</p>
+      <div className="w-1/3 overflow-hidden pr-6">
+        <Link href={`/transaction/${transaction.hash}`}>
+          <p className="truncate mr-2">{transaction.hash}</p>
+        </Link>
         {transaction.timestamp && (
           <Timestamp unixTimestamp={transaction.timestamp} />
         )}
