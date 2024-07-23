@@ -30,8 +30,13 @@ function TransactionDetails({
         </div>
       </div>
       <div className="w-1/3 pl-10 overflow-hidden">
-        <p className="truncate mr-2">from: {transaction.from}</p>
-        <p className="truncate mr-2">to: {transaction.to}</p>
+        <p className="truncate mr-2">
+          from:{" "}
+          <Link href={`/account/${transaction.from}`}>{transaction.from}</Link>
+        </p>
+        <p className="truncate mr-2">
+          to: <Link href={`/account/${transaction.to}`}>{transaction.to}</Link>
+        </p>
       </div>
     </div>
   );

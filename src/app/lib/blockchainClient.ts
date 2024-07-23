@@ -12,6 +12,10 @@ const alchemyClient = new Alchemy(settings);
 
 type Blockhash = string;
 
+export function getBalance(addressOrName: string) {
+  return alchemyClient.core.getBalance(addressOrName);
+}
+
 export function getBlock(
   blockHashOrBlockTag: Blockhash | "earliest" | "pending" | "latest"
 ) {

@@ -95,8 +95,16 @@ export default function Page({ params }: { params: { txhash: string } }) {
             gas limit: {Utils.formatUnits(transaction.gasLimit, "gwei")} gwei /{" "}
             {Utils.formatUnits(transaction.gasLimit, "wei")} wei
           </p>
-          <p className="mt-1">from: {transaction.from}</p>
-          <p className="mt-1">to: {transaction.to}</p>
+          <p className="mt-1">
+            from:{" "}
+            <Link href={`/account/${transaction.from}`}>
+              {transaction.from}
+            </Link>
+          </p>
+          <p className="mt-1">
+            to:{" "}
+            <Link href={`/account/${transaction.to}`}>{transaction.to}</Link>
+          </p>
           <p className="mt-1">confirmations: {transaction.confirmations}</p>
           <p className="mt-1">nonce: {transaction.nonce}</p>
           <Link href={`/block/${transaction.blockHash}`}>
